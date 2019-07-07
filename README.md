@@ -1,17 +1,20 @@
+This is a fork of [sveltejs/template](https://github.com/sveltejs/template) and combines functionality with [sveltejs/template-webpack](https://github.com/sveltejs/template-webpack). This repo has the ability scaffold out pojects using [Rollup](https://rollupjs.org/guide/en/) or [webpack](https://webpack.js.org/).
+
 *Psst — looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
 ---
 
 # svelte app
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+This is a SCF template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/dworthen/scf-svelte-app.
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
+```shell
+npx scf create dworthen/scf-svelte-app svelte-app -s
 ```
+
+The scaffolding process will prompt for which build tool to use. [Rollup](https://rollupjs.org/guide/en/) or [webpack](https://webpack.js.org/).
+
+View [dworthen/scf](https://github.com/dworthen/scf) for more information on project scaffolding with SCF.
 
 *Note that you will need to have [Node.js](https://nodejs.org) installed.*
 
@@ -20,14 +23,14 @@ cd svelte-app
 
 Install the dependencies...
 
-```bash
+```shell
 cd svelte-app
 npm install
 ```
 
-...then start [Rollup](https://rollupjs.org):
+...then start the dev process:
 
-```bash
+```shell
 npm run dev
 ```
 

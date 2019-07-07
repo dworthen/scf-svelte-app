@@ -1,13 +1,22 @@
+---
+- filename: rollup.config.js
+- conditions:
+    - name: buildTool
+      operator: eq
+      value: rollup
+---
+
 import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import { equal } from 'assert';
 
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-	input: 'src/main.js',
+	input: './${files["src/main.js"].dest}',
 	output: {
 		sourcemap: true,
 		format: 'iife',

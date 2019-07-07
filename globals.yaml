@@ -1,0 +1,6 @@
+- name: buildTool
+  message: Select build tool.
+  type: list
+  choices:
+    - rollup
+    - webpack

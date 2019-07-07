@@ -1,6 +1,37 @@
+---
+- filename: package.json
+- templateEngine: ejs
+- name: name
+  message: package name
+  validate: !!js/function >
+    function(input) {
+      return (
+        /^(?=.{1,214}$)(?:@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(input) 
+        || `${input} does not meet name requirements. Use lowercase letters and hyphens.`
+      );
+    }
+- name: version
+  message: version
+  pattern: !!js/regexp /^\d+\.\d+\.\d+$/
+  default: 1.0.0
+- name: description
+  message: description
+- name: author
+  message: author
+- name: test
+  message: test command
+  default: 'echo \"Error: no test specified\" && exit 1'
+- name: license
+  message: license
+  default: ISC
+---
 {
-  "name": "svelte-app",
-  "version": "1.0.0",
+  "name": "<%- name %>",
+  "version": "<%- version %>",
+  "description": "<%- description %>",
+  "author": "<%- author %>",
+  "license": "<%- license %>",
+  <%_ if(buildTool === "rollup") { _%>
   "devDependencies": {
     "npm-run-all": "^4.1.5",
     "rollup": "^1.10.1",
@@ -9,16 +40,37 @@
     "rollup-plugin-node-resolve": "^4.2.3",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^4.0.4",
-    "svelte": "^3.0.0"
-  },
-  "dependencies": {
+    "svelte": "^3.0.0",
     "sirv-cli": "^0.4.4"
   },
+  <%_ } else { _%>
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "mini-css-extract-plugin": "^0.6.0",
+    "serve": "^11.0.0",
+    "style-loader": "^0.23.1",
+    "svelte": "^3.0.0",
+    "svelte-loader": "2.13.3",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
+  },
+  <%_ } _%>
+  "dependencies": {},
+  <%_ if(buildTool === "rollup") { _%>
   "scripts": {
+    "test": "${test}",
     "build": "rollup -c",
     "autobuild": "rollup -c -w",
     "dev": "run-p start:dev autobuild",
     "start": "sirv public --single",
     "start:dev": "sirv public --single --dev"
   }
+  <%_ } else { _%>
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack",
+    "dev": "webpack-dev-server"
+  }
+  <%_ } _%>
 }
