@@ -1,6 +1,23 @@
-- name: buildTool
+- name: buildSettings
   message: Select build tool.
-  type: list
+  type: checkbox
   choices:
-    - rollup
-    - webpack
+    - name: Default (Rollup, other default settings)
+      value: default
+      checked: true
+    - name: Rollup
+      value: rollup
+    - name: Webpack
+      value: webpack
+    - name: Babel
+      value: babel
+    - name: TypeScript
+      value: typescript
+    - name: Progressive Web App (PWA) Support
+      value: pwa
+    - name: Router
+      value: router
+    - name: Linter / Formatter
+      value: linter
+    - name: Unit Testing
+      value: unitTesting

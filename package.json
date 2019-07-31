@@ -1,37 +1,14 @@
 ---
 - filename: package.json
 - templateEngine: ejs
-- name: name
-  message: package name
-  validate: !!js/function >
-    function(input) {
-      return (
-        /^(?=.{1,214}$)(?:@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$/.test(input) 
-        || `${input} does not meet name requirements. Use lowercase letters and hyphens.`
-      );
-    }
-- name: version
-  message: version
-  pattern: !!js/regexp /^\d+\.\d+\.\d+$/
-  default: 1.0.0
-- name: description
-  message: description
-- name: author
-  message: author
-- name: test
-  message: test command
-  default: 'echo \"Error: no test specified\" && exit 1'
-- name: license
-  message: license
-  default: ISC
 ---
 {
-  "name": "<%- name %>",
-  "version": "<%- version %>",
-  "description": "<%- description %>",
-  "author": "<%- author %>",
-  "license": "<%- license %>",
-  <%_ if(buildTool === "rollup") { _%>
+  "name": "svelte-app",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  <%_ if(buildSettings.includes("rollup") || buildSettings.includes("default")) { _%>
   "devDependencies": {
     "npm-run-all": "^4.1.5",
     "rollup": "^1.10.1",
@@ -58,9 +35,9 @@
   },
   <%_ } _%>
   "dependencies": {},
-  <%_ if(buildTool === "rollup") { _%>
+  <%_ if(buildSettings.includes("rollup") || buildSettings.includes("default")) { _%>
   "scripts": {
-    "test": "${test}",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c",
     "autobuild": "rollup -c -w",
     "dev": "run-p start:dev autobuild",
@@ -69,6 +46,7 @@
   }
   <%_ } else { _%>
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "cross-env NODE_ENV=production webpack",
     "dev": "webpack-dev-server"
   }

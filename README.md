@@ -9,7 +9,7 @@ This is a fork of [sveltejs/template](https://github.com/sveltejs/template) and 
 This is a SCF template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/dworthen/scf-svelte-app.
 
 ```shell
-npx scf create dworthen/scf-svelte-app svelte-app -s
+npx scf dworthen/svelte-app myApp -s
 ```
 
 The scaffolding process will prompt for which build tool to use. [Rollup](https://rollupjs.org/guide/en/) or [webpack](https://webpack.js.org/).
@@ -24,7 +24,7 @@ View [dworthen/scf](https://github.com/dworthen/scf) for more information on pro
 Install the dependencies...
 
 ```shell
-cd svelte-app
+cd myApp
 npm install
 ```
 

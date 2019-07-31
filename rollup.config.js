@@ -1,9 +1,13 @@
 ---
 - filename: rollup.config.js
 - conditions:
-    - name: buildTool
-      operator: eq
-      value: rollup
+  - name: buildSettings
+    operator: includes
+    value: rollup
+- conditions:
+  - name: buildSettings
+    operator: includes
+    value: default
 ---
 
 import svelte from 'rollup-plugin-svelte';

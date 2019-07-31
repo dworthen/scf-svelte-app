@@ -1,9 +1,9 @@
 ---
 - filename: webpack.config.js
 - conditions:
-    - name: buildTool
-      operator: eq
-      value: webpack
+  - name: buildSettings
+    operator: includes
+    value: webpack
 ---
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
